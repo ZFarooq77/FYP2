@@ -1,0 +1,2 @@
+anomaly_label,severity_score,severity_stage,ttf_km
+"{'prediction': 0, 'probability_normal': 0.9863718152046204, 'probability_anomaly': 0.01362820528447628, 'confidence': 0.9863718152046204}",{'prediction': 0.5119055693368291},"{'prediction': 0, 'probabilities': [0.4153635594217414, 0.227077690808179, 0.27968391691831407, 0.07787483285176534], 'confidence': 0.4153635594217414}",{'prediction': 57815.39369048658}

@@ -1,0 +1,7 @@
+generated from evaluate_single.py:
+demo_prediction_input.csv - Real input data from Final.csv
+demo_prediction_results.csv - Predictions only
+demo_prediction_details.csv - Detailed predictions with probabilities
+
+generated from test_different_scenarios.py
+scenario_test_summary.csv - Accuracy comparison across 4 scenarios
