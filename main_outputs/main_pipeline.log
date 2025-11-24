@@ -1,0 +1,254 @@
+2025-11-06 21:53:46,790 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-06 21:53:46,790 | INFO | 📊 Dataset: Final.csv
+2025-11-06 21:53:46,790 | INFO | 🎯 Training 4 models
+2025-11-06 21:53:46,790 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-06 21:53:46,790 | WARNING | ⚠️ Summary exists but model missing: outputs/anomaly_label_models_summary.csv
+2025-11-06 21:53:46,790 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-06 21:53:47,652 | ERROR | ❌ Anomaly Detection (Binary Classification) failed after 0.9s: [Errno 2] No such file or directory: '../Final.csv'
+2025-11-06 21:53:47,652 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-06 21:53:47,695 | INFO | 🟡 Cached files found: severity_stacking_model_v2.pkl + model_v2_summary.csv
+2025-11-06 21:53:47,695 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-06 21:53:47,695 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-06 21:53:47,695 | INFO | 🟡 Cached files found: severity_stage_stacking_model_v1.pkl + severity_stage_model_v1_summary.csv
+2025-11-06 21:53:47,695 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-06 21:53:47,712 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-06 21:53:47,712 | INFO | 🟡 Cached files found: best_ttf_model_gradient_boosting.pkl + model_performance_summary.csv
+2025-11-06 21:53:47,713 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-06 21:53:47,721 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-06 21:53:47,725 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.9 seconds
+2025-11-06 21:55:59,760 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-06 21:55:59,760 | INFO | 📊 Dataset: Final.csv
+2025-11-06 21:55:59,760 | INFO | 🎯 Training 4 models
+2025-11-06 21:55:59,760 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-06 21:55:59,760 | WARNING | ⚠️ Summary exists but model missing: outputs/anomaly_label_models_summary.csv
+2025-11-06 21:55:59,776 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-06 21:56:15,224 | ERROR | ❌ Anomaly Detection (Binary Classification) failed after 15.4s: Cannot save file into a non-existent directory: '..\outputs'
+2025-11-06 21:56:15,225 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-06 21:56:15,226 | INFO | 🟡 Cached files found: severity_stacking_model_v2.pkl + model_v2_summary.csv
+2025-11-06 21:56:15,227 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-06 21:56:15,228 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-06 21:56:15,228 | INFO | 🟡 Cached files found: severity_stage_stacking_model_v1.pkl + severity_stage_model_v1_summary.csv
+2025-11-06 21:56:15,228 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-06 21:56:15,237 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-06 21:56:15,238 | INFO | 🟡 Cached files found: best_ttf_model_gradient_boosting.pkl + model_performance_summary.csv
+2025-11-06 21:56:15,238 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-06 21:56:15,244 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-06 21:56:15,253 | INFO | 🎯 MAIN PIPELINE COMPLETED in 15.5 seconds
+2025-11-06 21:59:04,013 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-06 21:59:04,013 | INFO | 📊 Dataset: Final.csv
+2025-11-06 21:59:04,013 | INFO | 🎯 Training 4 models
+2025-11-06 21:59:04,013 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-06 21:59:04,013 | WARNING | ⚠️ Summary exists but model missing: outputs/anomaly_label_models_summary.csv
+2025-11-06 21:59:04,013 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-06 21:59:19,602 | ERROR | ❌ Anomaly Detection (Binary Classification) failed after 15.6s: name 'os' is not defined
+2025-11-06 21:59:19,602 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-06 21:59:19,603 | INFO | 🟡 Cached files found: severity_stacking_model_v2.pkl + model_v2_summary.csv
+2025-11-06 21:59:19,603 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-06 21:59:19,608 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-06 21:59:19,609 | INFO | 🟡 Cached files found: severity_stage_stacking_model_v1.pkl + severity_stage_model_v1_summary.csv
+2025-11-06 21:59:19,613 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-06 21:59:19,621 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-06 21:59:19,622 | INFO | 🟡 Cached files found: best_ttf_model_gradient_boosting.pkl + model_performance_summary.csv
+2025-11-06 21:59:19,623 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-06 21:59:19,635 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-06 21:59:19,642 | INFO | 🎯 MAIN PIPELINE COMPLETED in 15.6 seconds
+2025-11-06 22:01:05,616 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-06 22:01:05,616 | INFO | 📊 Dataset: Final.csv
+2025-11-06 22:01:05,616 | INFO | 🎯 Training 4 models
+2025-11-06 22:01:05,616 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-06 22:01:05,616 | WARNING | ⚠️ Summary exists but model missing: outputs/anomaly_label_models_summary.csv
+2025-11-06 22:01:05,616 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-06 22:01:35,343 | INFO | ✅ Anomaly Detection (Binary Classification) completed successfully in 29.7s
+2025-11-06 22:01:35,343 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-06 22:01:35,343 | INFO | 🟡 Cached files found: severity_stacking_model_v2.pkl + model_v2_summary.csv
+2025-11-06 22:01:35,359 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-06 22:01:35,360 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-06 22:01:35,360 | INFO | 🟡 Cached files found: severity_stage_stacking_model_v1.pkl + severity_stage_model_v1_summary.csv
+2025-11-06 22:01:35,360 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-06 22:01:35,370 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-06 22:01:35,371 | INFO | 🟡 Cached files found: best_ttf_model_gradient_boosting.pkl + model_performance_summary.csv
+2025-11-06 22:01:35,372 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-06 22:01:35,379 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-06 22:01:35,383 | INFO | 🎯 MAIN PIPELINE COMPLETED in 29.8 seconds
+2025-11-06 22:03:38,394 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-06 22:03:38,394 | INFO | 📊 Dataset: Final.csv
+2025-11-06 22:03:38,394 | INFO | 🎯 Training 4 models
+2025-11-06 22:03:38,394 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-06 22:03:38,394 | INFO | 🟡 Cached files found: best_anomaly_model_xgboost.pkl + anomaly_label_models_summary.csv
+2025-11-06 22:03:38,394 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-06 22:03:38,409 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-06 22:03:38,409 | INFO | 🟡 Cached files found: severity_stacking_model_v2.pkl + model_v2_summary.csv
+2025-11-06 22:03:38,409 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-06 22:03:38,409 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-06 22:03:38,409 | INFO | 🟡 Cached files found: severity_stage_stacking_model_v1.pkl + severity_stage_model_v1_summary.csv
+2025-11-06 22:03:38,409 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-06 22:03:38,418 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-06 22:03:38,418 | INFO | 🟡 Cached files found: best_ttf_model_gradient_boosting.pkl + model_performance_summary.csv
+2025-11-06 22:03:38,418 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-06 22:03:38,424 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-06 22:03:38,427 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.0 seconds
+2025-11-22 01:13:44,570 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 01:13:44,877 | INFO | 📊 Dataset: Final.csv
+2025-11-22 01:13:44,877 | INFO | 🎯 Training 4 models
+2025-11-22 01:13:44,879 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 01:13:44,880 | WARNING | ⚠️ Summary exists but model missing: outputs/anomaly_label_models_summary.csv
+2025-11-22 01:13:44,881 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-22 01:14:17,560 | INFO | ✅ Anomaly Detection (Binary Classification) completed successfully in 32.7s
+2025-11-22 01:14:17,560 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 01:14:17,561 | WARNING | ⚠️ Summary exists but model missing: models/model_v2_summary.csv
+2025-11-22 01:14:17,561 | INFO | 🔄 Training Severity Score Regression from scratch...
+2025-11-22 01:14:19,837 | INFO | ✅ Severity Score Regression completed successfully in 2.3s
+2025-11-22 01:14:19,838 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 01:14:19,838 | WARNING | ⚠️ Summary exists but model missing: outputs/severity_stage_model_v1_summary.csv
+2025-11-22 01:14:19,838 | INFO | 🔄 Training Severity Stage Classification (5-Class) from scratch...
+2025-11-22 01:14:19,881 | ERROR | ❌ Severity Stage Classification (5-Class) failed after 0.0s: [Errno 2] No such file or directory: '../Final.csv'
+2025-11-22 01:14:19,881 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 01:14:19,882 | WARNING | ⚠️ Summary exists but model missing: models/model_performance_summary.csv
+2025-11-22 01:14:19,882 | INFO | 🔄 Training Time-to-Failure (TTF) Regression from scratch...
+2025-11-22 01:15:07,846 | INFO | ✅ Time-to-Failure (TTF) Regression completed successfully in 48.0s
+2025-11-22 01:15:07,848 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 01:15:07,851 | INFO | 🎯 MAIN PIPELINE COMPLETED in 83.0 seconds
+2025-11-22 01:37:02,377 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 01:37:02,377 | INFO | 📊 Dataset: Final.csv
+2025-11-22 01:37:02,377 | INFO | 🎯 Training 4 models
+2025-11-22 01:37:02,378 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 01:37:02,378 | INFO | 🟡 Cached files found: anomaly_model.pkl + anomaly_label_models_summary.csv
+2025-11-22 01:37:02,378 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-22 01:37:02,390 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 01:37:02,390 | WARNING | ⚠️ Summary exists but model missing: models/model_v2_summary.csv
+2025-11-22 01:37:02,390 | INFO | 🔄 Training Severity Score Regression from scratch...
+2025-11-22 01:37:03,940 | INFO | ✅ Severity Score Regression completed successfully in 1.6s
+2025-11-22 01:37:03,941 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 01:37:03,941 | WARNING | ⚠️ Summary exists but model missing: outputs/severity_stage_model_v1_summary.csv
+2025-11-22 01:37:03,942 | INFO | 🔄 Training Severity Stage Classification (5-Class) from scratch...
+2025-11-22 01:39:04,337 | ERROR | ❌ Severity Stage Classification (5-Class) failed after 120.4s: Cannot save file into a non-existent directory: '..\outputs'
+2025-11-22 01:39:04,340 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 01:39:04,340 | INFO | 🟡 Cached files found: ttf_model.pkl + model_performance_summary.csv
+2025-11-22 01:39:04,341 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-22 01:39:04,356 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 01:39:04,361 | INFO | 🎯 MAIN PIPELINE COMPLETED in 122.0 seconds
+2025-11-22 03:05:56,871 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 03:05:56,871 | INFO | 📊 Dataset: Final.csv
+2025-11-22 03:05:56,871 | INFO | 🎯 Training 4 models
+2025-11-22 03:05:56,871 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 03:05:56,871 | INFO | 🔄 No cached files found for anomaly_model.pkl
+2025-11-22 03:05:56,871 | INFO | 🔄 Training Anomaly Detection (Binary Classification) from scratch...
+2025-11-22 03:06:25,014 | INFO | ✅ Anomaly Detection (Binary Classification) completed successfully in 28.1s
+2025-11-22 03:06:25,014 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 03:06:25,014 | INFO | 🔄 No cached files found for severity_score_model.pkl
+2025-11-22 03:06:25,014 | INFO | 🔄 Training Severity Score Regression from scratch...
+2025-11-22 03:06:25,839 | INFO | ✅ Severity Score Regression completed successfully in 0.8s
+2025-11-22 03:06:25,839 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 03:06:25,840 | INFO | 🔄 No cached files found for severity_stage_model.pkl
+2025-11-22 03:06:25,840 | INFO | 🔄 Training Severity Stage Classification (5-Class) from scratch...
+2025-11-22 03:10:53,192 | INFO | ✅ Severity Stage Classification (5-Class) completed successfully in 267.4s
+2025-11-22 03:10:53,192 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 03:10:53,207 | INFO | 🔄 No cached files found for ttf_model.pkl
+2025-11-22 03:10:53,207 | INFO | 🔄 Training Time-to-Failure (TTF) Regression from scratch...
+2025-11-22 03:11:35,539 | INFO | ✅ Time-to-Failure (TTF) Regression completed successfully in 42.3s
+2025-11-22 03:11:35,543 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 03:11:35,546 | INFO | 🎯 MAIN PIPELINE COMPLETED in 338.7 seconds
+2025-11-22 07:46:41,727 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 07:46:41,728 | INFO | 📊 Dataset: Final.csv
+2025-11-22 07:46:41,728 | INFO | 🎯 Training 4 models
+2025-11-22 07:46:41,728 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 07:46:41,728 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-22 07:46:41,729 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-22 07:46:41,732 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 07:46:41,732 | INFO | 🟡 Cached files found: severity_score_model.pkl + output_severity_score.csv
+2025-11-22 07:46:41,733 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-22 07:46:41,735 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 07:46:41,735 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-22 07:46:41,735 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-22 07:46:41,737 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 07:46:41,737 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-22 07:46:41,737 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-22 07:46:41,742 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 07:46:41,744 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.0 seconds
+2025-11-22 07:49:22,180 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 07:49:22,180 | INFO | 📊 Dataset: Final.csv
+2025-11-22 07:49:22,180 | INFO | 🎯 Training 4 models
+2025-11-22 07:49:22,180 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 07:49:22,180 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-22 07:49:22,181 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-22 07:49:22,185 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 07:49:22,185 | INFO | 🔄 No cached files found for severity_score_model.pkl
+2025-11-22 07:49:22,185 | INFO | 🔄 Training Severity Score Regression from scratch...
+2025-11-22 07:49:24,607 | INFO | ✅ Severity Score Regression completed successfully in 2.4s
+2025-11-22 07:49:24,607 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 07:49:24,608 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-22 07:49:24,608 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-22 07:49:24,610 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 07:49:24,610 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-22 07:49:24,611 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-22 07:49:24,615 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 07:49:24,619 | INFO | 🎯 MAIN PIPELINE COMPLETED in 2.4 seconds
+2025-11-22 23:47:40,761 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-22 23:47:40,785 | INFO | 📊 Dataset: Final.csv
+2025-11-22 23:47:40,786 | INFO | 🎯 Training 4 models
+2025-11-22 23:47:40,786 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-22 23:47:40,787 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-22 23:47:40,787 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-22 23:47:40,802 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-22 23:47:40,802 | INFO | 🟡 Cached files found: severity_score_model.pkl + output_severity_score.csv
+2025-11-22 23:47:40,802 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-22 23:47:40,804 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-22 23:47:40,805 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-22 23:47:40,805 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-22 23:47:40,815 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-22 23:47:40,816 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-22 23:47:40,816 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-22 23:47:40,829 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-22 23:47:40,833 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.0 seconds
+2025-11-23 00:24:38,724 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-23 00:24:38,724 | INFO | 📊 Dataset: Final.csv
+2025-11-23 00:24:38,724 | INFO | 🎯 Training 4 models
+2025-11-23 00:24:38,725 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-23 00:24:38,725 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-23 00:24:38,725 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-23 00:24:38,728 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-23 00:24:38,729 | INFO | 🟡 Cached files found: severity_score_model.pkl + output_severity_score.csv
+2025-11-23 00:24:38,729 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-23 00:24:38,731 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-23 00:24:38,731 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-23 00:24:38,731 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-23 00:24:38,733 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-23 00:24:38,734 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-23 00:24:38,734 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-23 00:24:38,741 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-23 00:24:38,744 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.0 seconds
+2025-11-23 00:32:31,464 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-23 00:32:31,464 | INFO | 📊 Dataset: Final.csv
+2025-11-23 00:32:31,465 | INFO | 🎯 Training 4 models
+2025-11-23 00:32:31,465 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-23 00:32:31,465 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-23 00:32:31,465 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-23 00:32:31,470 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-23 00:32:31,471 | INFO | 🔄 No cached files found for severity_score_model.pkl
+2025-11-23 00:32:31,471 | INFO | 🔄 Training Severity Score Regression from scratch...
+2025-11-23 00:35:38,025 | INFO | ✅ Severity Score Regression completed successfully in 186.6s
+2025-11-23 00:35:38,025 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-23 00:35:38,025 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-23 00:35:38,026 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-23 00:35:38,027 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-23 00:35:38,028 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-23 00:35:38,028 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-23 00:35:38,031 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-23 00:35:38,034 | INFO | 🎯 MAIN PIPELINE COMPLETED in 186.6 seconds
+2025-11-23 01:37:15,604 | INFO | 🚀 MAIN PIPELINE STARTED
+2025-11-23 01:37:15,633 | INFO | 📊 Dataset: Final.csv
+2025-11-23 01:37:15,633 | INFO | 🎯 Training 4 models
+2025-11-23 01:37:15,634 | INFO | 🔹 Processing: Anomaly Detection (Binary Classification)
+2025-11-23 01:37:15,634 | INFO | 🟡 Cached files found: anomaly_model.pkl + output_anomaly_label.csv
+2025-11-23 01:37:15,634 | INFO | 🟡 Using cached model for Anomaly Detection (Binary Classification)
+2025-11-23 01:37:15,638 | INFO | 🔹 Processing: Severity Score Regression
+2025-11-23 01:37:15,638 | INFO | 🟡 Cached files found: severity_score_model.pkl + output_severity_score.csv
+2025-11-23 01:37:15,639 | INFO | 🟡 Using cached model for Severity Score Regression
+2025-11-23 01:37:15,642 | INFO | 🔹 Processing: Severity Stage Classification (5-Class)
+2025-11-23 01:37:15,642 | INFO | 🟡 Cached files found: severity_stage_model.pkl + output_severity_stage.csv
+2025-11-23 01:37:15,643 | INFO | 🟡 Using cached model for Severity Stage Classification (5-Class)
+2025-11-23 01:37:15,645 | INFO | 🔹 Processing: Time-to-Failure (TTF) Regression
+2025-11-23 01:37:15,646 | INFO | 🟡 Cached files found: ttf_model.pkl + output_ttf.csv
+2025-11-23 01:37:15,646 | INFO | 🟡 Using cached model for Time-to-Failure (TTF) Regression
+2025-11-23 01:37:15,659 | INFO | 📊 Unified summary saved to main_outputs\unified_model_performance_summary.csv
+2025-11-23 01:37:15,661 | INFO | 🎯 MAIN PIPELINE COMPLETED in 0.0 seconds

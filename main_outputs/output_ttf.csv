@@ -1,0 +1,2 @@
+,Train_R2,Test_R2,Train_MAE,Test_MAE,Train_RMSE,Test_RMSE,Train_MAPE,Test_MAPE,CV_R2_Mean,CV_R2_Std,Overfitting_Gap
+Gradient_Boosting,0.9975,0.8422,142.51,491.32,270.18,2149.9,0.31,1.79,0.8514,0.0232,15.52

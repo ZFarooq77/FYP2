@@ -1,0 +1,2 @@
+gbr_best_params,gbr_cv_r2,rf_best_params,rf_cv_r2,stacking_cv_r2_mean,stacking_cv_r2_std,final_r2_original,final_mae_original,final_rmse_original,final_mape_original,n_features_selected,model_type
+"{'learning_rate': 0.1, 'max_depth': 2, 'min_samples_split': 5, 'n_estimators': 50, 'subsample': 0.8}",0.4841226456908162,"{'max_depth': 10, 'max_features': 0.5, 'min_samples_split': 10, 'n_estimators': 100}",0.49780671719807384,0.47201571897847544,0.07703760572710945,0.7615589134386773,0.08139076591467444,0.10309677844086572,35.38889057864792,50,Stacking_Ensemble

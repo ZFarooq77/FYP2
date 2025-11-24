@@ -1,0 +1,46 @@
+
+# ENHANCED SEVERITY SCORE MODEL V2 - USAGE INSTRUCTIONS
+# ====================================================
+
+import joblib
+import pandas as pd
+import numpy as np
+
+# 1. Load trained components
+model = joblib.load("models/main_models\severity_stacking_model_v2.pkl")
+scaler = joblib.load("models/main_models\severity_scaler_v2.pkl")
+selected_features = pd.read_csv("models/main_models\selected_features_v2.csv")['feature'].tolist()
+
+# 2. Prepare new data for prediction
+# X_new should be a DataFrame with the same sensor columns as training data
+X_new_selected = X_new[selected_features]  # Select only important features
+X_new_scaled = scaler.transform(X_new_selected)  # Scale features
+
+# 3. Make predictions
+severity_predictions = model.predict(X_new_scaled)
+
+# 4. Interpret results
+# severity_predictions contains values from 0.0 to 1.0:
+# 0.00-0.25: Mild degradation
+# 0.26-0.50: Moderate degradation
+# 0.51-0.75: Severe degradation
+# 0.76-1.00: Critical failure
+
+# Example usage:
+for i, severity in enumerate(severity_predictions):
+    if severity <= 0.25:
+        status = "Mild"
+    elif severity <= 0.50:
+        status = "Moderate"
+    elif severity <= 0.75:
+        status = "Severe"
+    else:
+        status = "Critical"
+
+    print(f"Sample {i+1}: Severity = {severity:.3f} ({status})")
+
+# NOTES:
+# - Model trained on 50 most important sensor features
+# - Uses advanced stacking ensemble (Gradient Boosting + Random Forest + Ridge meta-learner)
+# - Balanced training data for improved rare severity prediction
+# - Production-ready for catalytic converter degradation assessment

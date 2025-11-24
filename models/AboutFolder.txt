@@ -1,0 +1,144 @@
+
+
+## 🎯 **WHAT'S IN THE MODELS FOLDER:**
+
+The `models/` folder is your **centralized repository** for all trained machine learning models, scalers, analysis results, and visualizations. Here's what each category contains:
+
+---
+
+## 🤖 **1. TRAINED MODEL FILES (.pkl)**
+
+### **🔴 Anomaly Detection Models:**
+- `severity_score_GradientBoosting.pkl` - Individual Gradient Boosting model for severity scores
+- `severity_stacking_model_v2.pkl` - **MAIN** Stacking ensemble for severity score prediction (0-1)
+
+### **🟡 Severity Stage Classification Models:**
+- `severity_stage_gb_model_v1.pkl` - Gradient Boosting for stage classification
+- `severity_stage_rf_model_v1.pkl` - Random Forest for stage classification  
+- `severity_stage_stacking_model_v1.pkl` - **MAIN** Stacking ensemble for stage prediction (0-4)
+
+### **🟢 TTF (Time-to-Failure) Prediction Models:**
+- `best_ttf_model_gradient_boosting.pkl` - **MAIN** Best TTF model (84.22% R²)
+- `Random_Forest_TTF_km.pkl` - Baseline Random Forest for TTF_km
+- `Random_Forest_TTF_years.pkl` - Baseline Random Forest for TTF_years
+- `Ridge_Regression_TTF_km.pkl` - Baseline Ridge Regression for TTF_km
+- `Ridge_Regression_TTF_years.pkl` - Baseline Ridge Regression for TTF_years
+
+### **📁 all_models/ Subdirectory:**
+- `ttf_gradient_boosting.pkl` - Individual TTF Gradient Boosting
+- `ttf_random_forest.pkl` - Individual TTF Random Forest
+- `ttf_ridge_regression.pkl` - Individual TTF Ridge Regression
+- `ttf_stacking_ensemble.pkl` - TTF Stacking ensemble
+
+---
+
+## ⚖️ **2. DATA SCALERS (.pkl)**
+
+### **Feature Scaling Objects:**
+- `severity_scaler_v2.pkl` - StandardScaler for severity models
+- `severity_score_scaler.pkl` - Scaler for severity score model
+- `severity_stage_scaler_v1.pkl` - Scaler for severity stage model
+- `ttf_feature_scaler.pkl` - RobustScaler for TTF model
+
+---
+
+## 📊 **3. FEATURE LISTS & ANALYSIS (.csv)**
+
+### **Selected Features:**
+- `selected_features_v2.csv` - 50 selected features for severity models
+- `ttf_selected_features.csv` - 55 selected features for TTF model
+
+### **Feature Analysis:**
+- `feature_importances_v2.csv` - Feature importance rankings for severity
+- `ttf_feature_importances.csv` - Feature importance rankings for TTF
+- `correlation_analysis.csv` - Correlation matrix analysis
+- `vif_analysis.csv` - Variance Inflation Factor analysis (multicollinearity)
+
+### **Model Performance:**
+- `model_performance_summary.csv` - **KEY FILE** - Performance metrics for all TTF models
+- `model_v2_summary.csv` - Summary for severity models
+
+---
+
+## 📁 **4. STRUCTURED FEATURE LISTS (JSON)**
+
+### **feature_lists/ Subdirectory:**
+- `severity_features.json` - 50 features for severity models with metadata
+- `ttf_features.json` - 55 features for TTF model with metadata
+
+````json path=models/feature_lists/severity_features.json mode=EXCERPT
+{
+  "features": [
+    "ENGINE_RPM ()_std",
+    "CATALYST_TEMPERATURE_BANK1_SENSOR2 ()_mean",
+    "ENGINE_LOAD ()_mean",
+    "LONG_TERM_FUEL_TRIM_BANK_1 ()_mean",
+    ...
+  ],
+  "count": 50,
+  "description": "Selected features for severity score and stage models",
+  "source": "GradientBoosting feature importance"
+}
+````
+
+---
+
+## 🎨 **5. VISUALIZATIONS (.png)**
+
+### **Model Diagnostics:**
+- `enhanced_model_diagnostics.png` - Comprehensive model diagnostic plots
+- `model_comparison_and_metrics.png` - Model comparison visualizations
+- `model_performance_comparison.png` - Performance comparison charts
+- `prediction_vs_actual.png` - Prediction accuracy scatter plots
+- `residual_analysis.png` - Residual analysis plots
+- `correlation_heatmap.png` - Feature correlation heatmap
+- `feature_importance_plot.png` - Feature importance bar charts
+
+---
+
+## 📄 **6. DOCUMENTATION**
+
+### **Usage Instructions:**
+- `usage_instructions.txt` - Code snippets for loading and using trained models
+
+---
+
+## 🎯 **KEY PERFORMANCE METRICS:**
+
+From `model_performance_summary.csv`:
+
+| **Model** | **Test R²** | **Test MAE** | **Status** |
+|-----------|-------------|--------------|------------|
+| **Gradient Boosting** | **84.22%** | **491.32 km** | 🏆 **BEST** |
+| Stacking Ensemble | 83.73% | 542.06 km | ✅ Good |
+| Random Forest | 81.53% | 542.10 km | ✅ Good |
+| Ridge Regression | 76.42% | 981.69 km | ⚠️ Baseline |
+
+---
+
+## 🚀 **HOW TO USE THESE MODELS:**
+
+### **For Production Deployment:**
+1. **Load the best model**: `best_ttf_model_gradient_boosting.pkl`
+2. **Load the scaler**: `ttf_feature_scaler.pkl`  
+3. **Load feature list**: `ttf_selected_features.csv`
+4. **Follow instructions**: `usage_instructions.txt`
+
+### **For Analysis:**
+- **Performance comparison**: `model_performance_summary.csv`
+- **Feature insights**: `feature_importances_v2.csv`
+- **Visual diagnostics**: `*.png` files
+
+---
+
+## 🏆 **SUMMARY:**
+
+The `models/` folder is your **complete AI model repository** containing:
+- ✅ **6 different trained models** for 3 prediction tasks
+- ✅ **4 data scalers** for proper feature preprocessing  
+- ✅ **Curated feature lists** (50 + 55 features)
+- ✅ **Performance metrics** and analysis results
+- ✅ **Professional visualizations** for presentations
+- ✅ **Production-ready deployment** instructions
+
+**This is essentially your FYP's "AI Brain" - everything needed to deploy and use your predictive maintenance system!** 🧠🚗

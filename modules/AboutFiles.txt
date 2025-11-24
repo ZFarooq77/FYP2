@@ -1,0 +1,16 @@
+📁 OUTPUT FILES GENERATED:
+🎯 Model Performance Summaries:
+ outputs/anomaly_label_models_summary.csv - XGBoost: 96.48% accuracy
+ models/model_v2_summary.csv - Stacking: R² = 76.16%
+ outputs/severity_stage_model_v1_summary.csv - Stacking: 91.03% accuracy
+ models/model_performance_summary.csv - Gradient Boosting: R² = 84.22%
+🤖 Trained Models:
+models/best_anomaly_model_xgboost.pkl - Binary anomaly detection
+ models/severity_stacking_model_v2.pkl - Continuous severity score
+ models/severity_stage_stacking_model_v1.pkl - 5-class severity stage
+ models/best_ttf_model_gradient_boosting.pkl - TTF regression
+📊 Feature Lists & Scalers:
+ models/ttf_selected_features.csv - 55 optimized features for TTF
+ models/selected_features_v2.csv - 50 features for severity models
+ models/ttf_feature_scaler.pkl - RobustScaler for TTF model
+ models/severity_stage_scaler_v1.pkl - StandardScaler for stage model
