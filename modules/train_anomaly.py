@@ -22,7 +22,7 @@ except ImportError:
 # ============================
 # Load Dataset
 # ============================
-file_path = "Final.csv"
+file_path = "../Final.csv"
 df = pd.read_csv(file_path)
 print(f"\nLoaded dataset: {df.shape[0]} rows × {df.shape[1]} columns")
 

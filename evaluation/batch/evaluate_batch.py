@@ -115,44 +115,41 @@ def load_and_preprocess_data():
     return X_full, targets, df
 
 # ==========================================================
-# 🔄 TRAIN-TEST SPLIT RECREATION
+# 🔄 TRAIN-TEST SPLIT (SHARED ACROSS ALL TARGETS)
 # ==========================================================
 def recreate_train_test_split(X_full, targets):
+    """Create **one** common test split so all targets align row-by-row.
+
+    This is important for `predictions_vs_actual.csv` so that each row
+    represents the **same physical sample** flowing through the full
+    pipeline: anomaly → severity_score → severity_stage → ttf_km.
     """
-    Recreate the EXACT same train-test split as used in training.
-    Returns only the test sets for evaluation.
-    """
-    log_message("🔄 Recreating train-test split (same as training)...")
-    
+    log_message("🔄 Creating unified train-test split for all targets...")
+
+    # Use severity_stage for stratification so all stages (and anomalies)
+    # are well represented in the test set
+    y_strat = targets['severity_stage']
+
+    X_train, X_test, _, _ = train_test_split(
+        X_full,
+        y_strat,
+        test_size=TEST_SIZE,
+        random_state=RANDOM_STATE,
+        stratify=y_strat
+    )
+
+    test_indices = X_test.index
+
     test_sets = {}
-    
-    # For each target, recreate the split used in training
     for target_name, y in targets.items():
-        log_message(f"   Splitting {target_name}...")
-        
-        if target_name == 'severity_stage':
-            # Use stratified split (same as training)
-            _, X_test, _, y_test = train_test_split(
-                X_full, y, 
-                test_size=TEST_SIZE, 
-                random_state=RANDOM_STATE,
-                stratify=y
-            )
-        else:
-            # Regular split for other targets
-            _, X_test, _, y_test = train_test_split(
-                X_full, y,
-                test_size=TEST_SIZE,
-                random_state=RANDOM_STATE
-            )
-        
+        y_test = y.loc[test_indices]
+        # All targets share the same X_test (same rows)
         test_sets[target_name] = {
             'X_test': X_test,
             'y_test': y_test
         }
-        
         log_message(f"   ✅ {target_name}: {len(y_test)} test samples")
-    
+
     return test_sets
 
 # ==========================================================

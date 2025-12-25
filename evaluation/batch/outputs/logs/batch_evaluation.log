@@ -99,3 +99,772 @@
 ============================================================
 [2025-11-24 01:18:16] 🎉 BATCH EVALUATION COMPLETED!
 [2025-11-24 01:18:16] ============================================================
+[2025-11-25 11:30:05] 🚀 Starting batch evaluation...
+[2025-11-25 11:30:05] 🔍 Loading Final.csv...
+[2025-11-25 11:30:05] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-11-25 11:30:05] 🔄 Applying preprocessing...
+[2025-11-25 11:30:05] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-11-25 11:30:05] ✅ Features after preprocessing: 120 numeric columns
+[2025-11-25 11:30:05] ✅ Target distributions:
+[2025-11-25 11:30:05]    Anomaly: {0: 5897, 1: 301}
+[2025-11-25 11:30:05]    Severity Score: 0.000 - 0.992
+[2025-11-25 11:30:05]    Severity Stage: [0, 1, 2, 4]
+[2025-11-25 11:30:05]    TTF (km): 5289 - 58490
+[2025-11-25 11:30:05] 🔄 Recreating train-test split (same as training)...
+[2025-11-25 11:30:05]    Splitting anomaly_label...
+[2025-11-25 11:30:05]    ✅ anomaly_label: 1240 test samples
+[2025-11-25 11:30:05]    Splitting severity_score...
+[2025-11-25 11:30:05]    ✅ severity_score: 1240 test samples
+[2025-11-25 11:30:05]    Splitting severity_stage...
+[2025-11-25 11:30:05]    ✅ severity_stage: 1240 test samples
+[2025-11-25 11:30:05]    Splitting ttf_km...
+[2025-11-25 11:30:05]    ✅ ttf_km: 1240 test samples
+[2025-11-25 11:30:05] 🔍 Loading trained models...
+[2025-11-25 11:30:05]   📦 Loading anomaly_label...
+[2025-11-25 11:30:06]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-11-25 11:30:06]   📦 Loading severity_score...
+[2025-11-25 11:30:06]     ✅ Model loaded: severity_score_model.pkl
+[2025-11-25 11:30:06]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-11-25 11:30:06]     ✅ Features loaded: 50 features
+[2025-11-25 11:30:06]   📦 Loading severity_stage...
+[2025-11-25 11:30:06]     ✅ Model loaded: severity_stage_model.pkl
+[2025-11-25 11:30:06]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-11-25 11:30:06]     ✅ Features loaded: 50 features
+[2025-11-25 11:30:06]   📦 Loading ttf_km...
+[2025-11-25 11:30:06]     ✅ Model loaded: ttf_model.pkl
+[2025-11-25 11:30:06]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-11-25 11:30:06]     ✅ Features loaded: 55 features
+[2025-11-25 11:30:06] ✅ All models loaded successfully!
+[2025-11-25 11:30:06] 
+============================================================
+[2025-11-25 11:30:06] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-11-25 11:30:06] ============================================================
+[2025-11-25 11:30:06] 
+🎯 Evaluating anomaly_label...
+[2025-11-25 11:30:06] 🔮 Predicting anomaly_label...
+[2025-11-25 11:30:06]     Using 120 specific features
+[2025-11-25 11:30:06]     ✅ Applied imputation
+[2025-11-25 11:30:06]     ✅ Applied scaling
+[2025-11-25 11:30:06]     ✅ Predictions generated: 1240 samples
+[2025-11-25 11:30:06] 📊 anomaly_label Classification Metrics:
+[2025-11-25 11:30:06]     Accuracy:  0.9992
+[2025-11-25 11:30:06]     Precision: 0.9992
+[2025-11-25 11:30:06]     Recall:    0.9992
+[2025-11-25 11:30:06]     F1-Score:  0.9992
+[2025-11-25 11:30:07]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-11-25 11:30:07] ✅ anomaly_label evaluation completed
+[2025-11-25 11:30:07] 
+🎯 Evaluating severity_score...
+[2025-11-25 11:30:07] 🔮 Predicting severity_score...
+[2025-11-25 11:30:07]     Using 50 specific features
+[2025-11-25 11:30:07]     ✅ Applied scaling
+[2025-11-25 11:30:08]     ✅ Predictions generated: 1240 samples
+[2025-11-25 11:30:08] 📊 severity_score Regression Metrics:
+[2025-11-25 11:30:08]     MAE:   0.2460
+[2025-11-25 11:30:08]     RMSE:  0.2648
+[2025-11-25 11:30:08]     R²:    -4.9550
+[2025-11-25 11:30:08]     MAPE:  25.69%
+[2025-12-24 03:20:36] 🚀 Starting batch evaluation...
+[2025-12-24 03:20:36] 🔍 Loading Final.csv...
+[2025-12-24 03:20:36] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 03:20:36] 🔄 Applying preprocessing...
+[2025-12-24 03:20:36] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 03:20:36] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 03:20:36] ✅ Target distributions:
+[2025-12-24 03:20:36]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 03:20:36]    Severity Score: 0.000 - 0.992
+[2025-12-24 03:20:36]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 03:20:36]    TTF (km): 5289 - 58490
+[2025-12-24 03:20:36] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 03:20:36]    Splitting anomaly_label...
+[2025-12-24 03:20:36]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 03:20:36]    Splitting severity_score...
+[2025-12-24 03:20:36]    ✅ severity_score: 1240 test samples
+[2025-12-24 03:20:36]    Splitting severity_stage...
+[2025-12-24 03:20:36]    ✅ severity_stage: 1240 test samples
+[2025-12-24 03:20:36]    Splitting ttf_km...
+[2025-12-24 03:20:36]    ✅ ttf_km: 1240 test samples
+[2025-12-24 03:20:36] 🔍 Loading trained models...
+[2025-12-24 03:20:36]   📦 Loading anomaly_label...
+[2025-12-24 03:20:37]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 03:20:37]   📦 Loading severity_score...
+[2025-12-24 03:20:37]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 03:20:37]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 03:20:37]     ✅ Features loaded: 50 features
+[2025-12-24 03:20:37]   📦 Loading severity_stage...
+[2025-12-24 03:20:37]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 03:20:37]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 03:20:37]     ✅ Features loaded: 50 features
+[2025-12-24 03:20:37]   📦 Loading ttf_km...
+[2025-12-24 03:20:37]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 03:20:37]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 03:20:37]     ✅ Features loaded: 55 features
+[2025-12-24 03:20:37] ✅ All models loaded successfully!
+[2025-12-24 03:20:37] 
+============================================================
+[2025-12-24 03:20:37] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 03:20:37] ============================================================
+[2025-12-24 03:20:37] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 03:20:37] 🔮 Predicting anomaly_label...
+[2025-12-24 03:20:37]     Using 120 specific features
+[2025-12-24 03:20:37]     ✅ Applied imputation
+[2025-12-24 03:20:37]     ✅ Applied scaling
+[2025-12-24 03:20:37]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:20:37] 📊 anomaly_label Classification Metrics:
+[2025-12-24 03:20:37]     Accuracy:  0.9992
+[2025-12-24 03:20:37]     Precision: 0.9992
+[2025-12-24 03:20:37]     Recall:    0.9992
+[2025-12-24 03:20:37]     F1-Score:  0.9992
+[2025-12-24 03:20:39]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 03:20:39] ✅ anomaly_label evaluation completed
+[2025-12-24 03:20:39] 
+🎯 Evaluating severity_score...
+[2025-12-24 03:20:39] 🔮 Predicting severity_score...
+[2025-12-24 03:20:39]     Using 50 specific features
+[2025-12-24 03:20:39]     ✅ Applied scaling
+[2025-12-24 03:20:39]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:20:39] 📊 severity_score Regression Metrics:
+[2025-12-24 03:20:39]     MAE:   0.0718
+[2025-12-24 03:20:39]     RMSE:  0.1192
+[2025-12-24 03:20:39]     R²:    -0.2064
+[2025-12-24 03:20:39]     MAPE:  9.10%
+[2025-12-24 03:20:40]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score.png
+[2025-12-24 03:20:40] ✅ severity_score evaluation completed
+[2025-12-24 03:20:40] 
+🎯 Evaluating severity_stage...
+[2025-12-24 03:20:40] 🔮 Predicting severity_stage...
+[2025-12-24 03:20:40]     Using 50 specific features
+[2025-12-24 03:20:40]     ✅ Applied scaling
+[2025-12-24 03:20:40]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:20:40] 📊 severity_stage Classification Metrics:
+[2025-12-24 03:20:40]     Accuracy:  0.9863
+[2025-12-24 03:20:40]     Precision: 0.9881
+[2025-12-24 03:20:40]     Recall:    0.9863
+[2025-12-24 03:20:40]     F1-Score:  0.9869
+[2025-12-24 03:20:41]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 03:20:41] ✅ severity_stage evaluation completed
+[2025-12-24 03:20:41] 
+🎯 Evaluating ttf_km...
+[2025-12-24 03:20:41] 🔮 Predicting ttf_km...
+[2025-12-24 03:20:41]     Using 55 specific features
+[2025-12-24 03:20:41]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 03:20:41]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:20:41] 📊 ttf_km Regression Metrics:
+[2025-12-24 03:20:41]     MAE:   184.1625
+[2025-12-24 03:20:41]     RMSE:  724.4064
+[2025-12-24 03:20:41]     R²:    0.9832
+[2025-12-24 03:20:41]     MAPE:  0.44%
+[2025-12-24 03:20:43]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 03:20:43] ✅ ttf_km evaluation completed
+[2025-12-24 03:20:43] 💾 Saving evaluation results...
+[2025-12-24 03:20:43] ✅ Predictions saved: outputs/predictions_vs_actual.csv
+[2025-12-24 03:20:43] ✅ Metrics summary saved: outputs/metrics_summary.csv
+[2025-12-24 03:20:43] ✅ Detailed sample results saved: outputs/detailed_sample_results.csv
+[2025-12-24 03:20:43] 
+============================================================
+[2025-12-24 03:20:43] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 03:20:43] ============================================================
+[2025-12-24 03:22:58] 🚀 Starting batch evaluation...
+[2025-12-24 03:22:58] 🔍 Loading Final.csv...
+[2025-12-24 03:22:58] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 03:22:58] 🔄 Applying preprocessing...
+[2025-12-24 03:22:58] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 03:22:58] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 03:22:58] ✅ Target distributions:
+[2025-12-24 03:22:58]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 03:22:58]    Severity Score: 0.000 - 0.992
+[2025-12-24 03:22:58]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 03:22:58]    TTF (km): 5289 - 58490
+[2025-12-24 03:22:58] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 03:22:58]    Splitting anomaly_label...
+[2025-12-24 03:22:58]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 03:22:58]    Splitting severity_score...
+[2025-12-24 03:22:58]    ✅ severity_score: 1240 test samples
+[2025-12-24 03:22:58]    Splitting severity_stage...
+[2025-12-24 03:22:58]    ✅ severity_stage: 1240 test samples
+[2025-12-24 03:22:58]    Splitting ttf_km...
+[2025-12-24 03:22:58]    ✅ ttf_km: 1240 test samples
+[2025-12-24 03:22:58] 🔍 Loading trained models...
+[2025-12-24 03:22:58]   📦 Loading anomaly_label...
+[2025-12-24 03:22:59]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 03:22:59]   📦 Loading severity_score...
+[2025-12-24 03:22:59]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 03:22:59]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 03:22:59]     ✅ Features loaded: 50 features
+[2025-12-24 03:22:59]   📦 Loading severity_stage...
+[2025-12-24 03:22:59]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 03:22:59]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 03:22:59]     ✅ Features loaded: 50 features
+[2025-12-24 03:22:59]   📦 Loading ttf_km...
+[2025-12-24 03:22:59]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 03:22:59]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 03:22:59]     ✅ Features loaded: 55 features
+[2025-12-24 03:22:59] ✅ All models loaded successfully!
+[2025-12-24 03:22:59] 
+============================================================
+[2025-12-24 03:22:59] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 03:22:59] ============================================================
+[2025-12-24 03:22:59] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 03:22:59] 🔮 Predicting anomaly_label...
+[2025-12-24 03:22:59]     Using 120 specific features
+[2025-12-24 03:22:59]     ✅ Applied imputation
+[2025-12-24 03:22:59]     ✅ Applied scaling
+[2025-12-24 03:22:59]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:22:59] 📊 anomaly_label Classification Metrics:
+[2025-12-24 03:22:59]     Accuracy:  0.9992
+[2025-12-24 03:22:59]     Precision: 0.9992
+[2025-12-24 03:22:59]     Recall:    0.9992
+[2025-12-24 03:22:59]     F1-Score:  0.9992
+[2025-12-24 03:22:59]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 03:22:59] ✅ anomaly_label evaluation completed
+[2025-12-24 03:22:59] 
+🎯 Evaluating severity_score...
+[2025-12-24 03:22:59] 🔮 Predicting severity_score...
+[2025-12-24 03:22:59]     Using 50 specific features
+[2025-12-24 03:22:59]     ✅ Applied scaling
+[2025-12-24 03:23:00]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:00] 📊 severity_score Regression Metrics:
+[2025-12-24 03:23:00]     MAE:   0.0718
+[2025-12-24 03:23:00]     RMSE:  0.1192
+[2025-12-24 03:23:00]     R²:    -0.2064
+[2025-12-24 03:23:00]     MAPE:  9.10%
+[2025-12-24 03:23:01]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score.png
+[2025-12-24 03:23:01] ✅ severity_score evaluation completed
+[2025-12-24 03:23:01] 
+🎯 Evaluating severity_stage...
+[2025-12-24 03:23:01] 🔮 Predicting severity_stage...
+[2025-12-24 03:23:01]     Using 50 specific features
+[2025-12-24 03:23:01]     ✅ Applied scaling
+[2025-12-24 03:23:01]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:01] 📊 severity_stage Classification Metrics:
+[2025-12-24 03:23:01]     Accuracy:  0.9863
+[2025-12-24 03:23:01]     Precision: 0.9881
+[2025-12-24 03:23:01]     Recall:    0.9863
+[2025-12-24 03:23:01]     F1-Score:  0.9869
+[2025-12-24 03:23:02]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 03:23:02] ✅ severity_stage evaluation completed
+[2025-12-24 03:23:02] 
+🎯 Evaluating ttf_km...
+[2025-12-24 03:23:02] 🔮 Predicting ttf_km...
+[2025-12-24 03:23:02]     Using 55 specific features
+[2025-12-24 03:23:02]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 03:23:02]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:02] 📊 ttf_km Regression Metrics:
+[2025-12-24 03:23:02]     MAE:   184.1625
+[2025-12-24 03:23:02]     RMSE:  724.4064
+[2025-12-24 03:23:02]     R²:    0.9832
+[2025-12-24 03:23:02]     MAPE:  0.44%
+[2025-12-24 03:23:03]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 03:23:03] ✅ ttf_km evaluation completed
+[2025-12-24 03:23:03] 💾 Saving evaluation results...
+[2025-12-24 03:23:03] ✅ Predictions saved: outputs/predictions_vs_actual.csv
+[2025-12-24 03:23:03] ✅ Metrics summary saved: outputs/metrics_summary.csv
+[2025-12-24 03:23:03] ✅ Detailed sample results saved: outputs/detailed_sample_results.csv
+[2025-12-24 03:23:03] 
+============================================================
+[2025-12-24 03:23:03] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 03:23:03] ============================================================
+[2025-12-24 03:23:38] 🚀 Starting batch evaluation...
+[2025-12-24 03:23:38] 🔍 Loading Final.csv...
+[2025-12-24 03:23:38] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 03:23:38] 🔄 Applying preprocessing...
+[2025-12-24 03:23:38] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 03:23:38] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 03:23:38] ✅ Target distributions:
+[2025-12-24 03:23:38]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 03:23:38]    Severity Score: 0.000 - 0.992
+[2025-12-24 03:23:38]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 03:23:38]    TTF (km): 5289 - 58490
+[2025-12-24 03:23:38] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 03:23:38]    Splitting anomaly_label...
+[2025-12-24 03:23:38]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 03:23:38]    Splitting severity_score...
+[2025-12-24 03:23:38]    ✅ severity_score: 1240 test samples
+[2025-12-24 03:23:38]    Splitting severity_stage...
+[2025-12-24 03:23:38]    ✅ severity_stage: 1240 test samples
+[2025-12-24 03:23:38]    Splitting ttf_km...
+[2025-12-24 03:23:38]    ✅ ttf_km: 1240 test samples
+[2025-12-24 03:23:38] 🔍 Loading trained models...
+[2025-12-24 03:23:38]   📦 Loading anomaly_label...
+[2025-12-24 03:23:38]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 03:23:38]   📦 Loading severity_score...
+[2025-12-24 03:23:39]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 03:23:39]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 03:23:39]     ✅ Features loaded: 50 features
+[2025-12-24 03:23:39]   📦 Loading severity_stage...
+[2025-12-24 03:23:39]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 03:23:39]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 03:23:39]     ✅ Features loaded: 50 features
+[2025-12-24 03:23:39]   📦 Loading ttf_km...
+[2025-12-24 03:23:39]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 03:23:39]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 03:23:39]     ✅ Features loaded: 55 features
+[2025-12-24 03:23:39] ✅ All models loaded successfully!
+[2025-12-24 03:23:39] 
+============================================================
+[2025-12-24 03:23:39] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 03:23:39] ============================================================
+[2025-12-24 03:23:39] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 03:23:39] 🔮 Predicting anomaly_label...
+[2025-12-24 03:23:39]     Using 120 specific features
+[2025-12-24 03:23:39]     ✅ Applied imputation
+[2025-12-24 03:23:39]     ✅ Applied scaling
+[2025-12-24 03:23:39]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:39] 📊 anomaly_label Classification Metrics:
+[2025-12-24 03:23:39]     Accuracy:  0.9992
+[2025-12-24 03:23:39]     Precision: 0.9992
+[2025-12-24 03:23:39]     Recall:    0.9992
+[2025-12-24 03:23:39]     F1-Score:  0.9992
+[2025-12-24 03:23:39]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 03:23:39] ✅ anomaly_label evaluation completed
+[2025-12-24 03:23:39] 
+🎯 Evaluating severity_score...
+[2025-12-24 03:23:39] 🔮 Predicting severity_score...
+[2025-12-24 03:23:39]     Using 50 specific features
+[2025-12-24 03:23:39]     ✅ Applied scaling
+[2025-12-24 03:23:39]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:39]     ℹ️ Computing severity_score metrics on ALL test rows...
+[2025-12-24 03:23:39] 📊 severity_score_all Regression Metrics:
+[2025-12-24 03:23:39]     MAE:   0.0718
+[2025-12-24 03:23:39]     RMSE:  0.1192
+[2025-12-24 03:23:39]     R²:    -0.2064
+[2025-12-24 03:23:39]     MAPE:  9.10%
+[2025-12-24 03:23:39]     ℹ️ Computing severity_score metrics on ANOMALY rows only (n=62)...
+[2025-12-24 03:23:39] 📊 severity_score_anomalies Regression Metrics:
+[2025-12-24 03:23:39]     MAE:   0.3380
+[2025-12-24 03:23:39]     RMSE:  0.3891
+[2025-12-24 03:23:39]     R²:    -2.3473
+[2025-12-24 03:23:39]     MAPE:  72.17%
+[2025-12-24 03:23:41]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score_anomalies.png
+[2025-12-24 03:23:41] ✅ severity_score evaluation completed
+[2025-12-24 03:23:41] 
+🎯 Evaluating severity_stage...
+[2025-12-24 03:23:41] 🔮 Predicting severity_stage...
+[2025-12-24 03:23:41]     Using 50 specific features
+[2025-12-24 03:23:41]     ✅ Applied scaling
+[2025-12-24 03:23:41]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:41] 📊 severity_stage Classification Metrics:
+[2025-12-24 03:23:41]     Accuracy:  0.9863
+[2025-12-24 03:23:41]     Precision: 0.9881
+[2025-12-24 03:23:41]     Recall:    0.9863
+[2025-12-24 03:23:41]     F1-Score:  0.9869
+[2025-12-24 03:23:42]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 03:23:42] ✅ severity_stage evaluation completed
+[2025-12-24 03:23:42] 
+🎯 Evaluating ttf_km...
+[2025-12-24 03:23:42] 🔮 Predicting ttf_km...
+[2025-12-24 03:23:42]     Using 55 specific features
+[2025-12-24 03:23:42]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 03:23:42]     ✅ Predictions generated: 1240 samples
+[2025-12-24 03:23:42] 📊 ttf_km Regression Metrics:
+[2025-12-24 03:23:42]     MAE:   184.1625
+[2025-12-24 03:23:42]     RMSE:  724.4064
+[2025-12-24 03:23:42]     R²:    0.9832
+[2025-12-24 03:23:42]     MAPE:  0.44%
+[2025-12-24 03:23:43]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 03:23:43] ✅ ttf_km evaluation completed
+[2025-12-24 03:23:43] 💾 Saving evaluation results...
+[2025-12-24 03:23:43] ✅ Predictions saved: outputs/predictions_vs_actual.csv
+[2025-12-24 03:23:43] ✅ Metrics summary saved: outputs/metrics_summary.csv
+[2025-12-24 03:23:43] ✅ Detailed sample results saved: outputs/detailed_sample_results.csv
+[2025-12-24 03:23:43] 
+============================================================
+[2025-12-24 03:23:43] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 03:23:43] ============================================================
+[2025-12-24 04:33:34] 🚀 Starting batch evaluation...
+[2025-12-24 04:33:34] 🔍 Loading Final.csv...
+[2025-12-24 04:33:34] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 04:33:34] 🔄 Applying preprocessing...
+[2025-12-24 04:33:34] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 04:33:34] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 04:33:34] ✅ Target distributions:
+[2025-12-24 04:33:34]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 04:33:34]    Severity Score: 0.000 - 0.992
+[2025-12-24 04:33:34]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 04:33:34]    TTF (km): 5289 - 58490
+[2025-12-24 04:33:34] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 04:33:34]    Splitting anomaly_label...
+[2025-12-24 04:33:34]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 04:33:34]    Splitting severity_score...
+[2025-12-24 04:33:34]    ✅ severity_score: 1240 test samples
+[2025-12-24 04:33:34]    Splitting severity_stage...
+[2025-12-24 04:33:34]    ✅ severity_stage: 1240 test samples
+[2025-12-24 04:33:34]    Splitting ttf_km...
+[2025-12-24 04:33:34]    ✅ ttf_km: 1240 test samples
+[2025-12-24 04:33:34] 🔍 Loading trained models...
+[2025-12-24 04:33:34]   📦 Loading anomaly_label...
+[2025-12-24 04:33:34]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 04:33:34]   📦 Loading severity_score...
+[2025-12-24 04:33:34]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 04:33:34]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 04:33:34]     ✅ Features loaded: 50 features
+[2025-12-24 04:33:34]   📦 Loading severity_stage...
+[2025-12-24 04:33:35]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 04:33:35]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 04:33:35]     ✅ Features loaded: 50 features
+[2025-12-24 04:33:35]   📦 Loading ttf_km...
+[2025-12-24 04:33:35]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 04:33:35]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 04:33:35]     ✅ Features loaded: 55 features
+[2025-12-24 04:33:35] ✅ All models loaded successfully!
+[2025-12-24 04:33:35] 
+============================================================
+[2025-12-24 04:33:35] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 04:33:35] ============================================================
+[2025-12-24 04:33:35] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 04:33:35] 🔮 Predicting anomaly_label...
+[2025-12-24 04:33:35]     Using 120 specific features
+[2025-12-24 04:33:35]     ✅ Applied imputation
+[2025-12-24 04:33:35]     ✅ Applied scaling
+[2025-12-24 04:33:35]     ✅ Predictions generated: 1240 samples
+[2025-12-24 04:33:35] 📊 anomaly_label Classification Metrics:
+[2025-12-24 04:33:35]     Accuracy:  0.9992
+[2025-12-24 04:33:35]     Precision: 0.9992
+[2025-12-24 04:33:35]     Recall:    0.9992
+[2025-12-24 04:33:35]     F1-Score:  0.9992
+[2025-12-24 04:33:35]     ✅ Confusion matrix saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 04:33:35] ✅ anomaly_label evaluation completed
+[2025-12-24 04:33:35] 
+🎯 Evaluating severity_score...
+[2025-12-24 04:33:35] 🔮 Predicting severity_score...
+[2025-12-24 04:33:35]     Using 50 specific features
+[2025-12-24 04:33:35]     ✅ Applied scaling
+[2025-12-24 04:33:35]     ✅ Predictions generated: 1240 samples
+[2025-12-24 04:33:35] 📊 severity_score Regression Metrics:
+[2025-12-24 04:33:35]     MAE:   0.0148
+[2025-12-24 04:33:35]     RMSE:  0.0225
+[2025-12-24 04:33:35]     R²:    0.9572
+[2025-12-24 04:33:35]     MAPE:  2.19%
+[2025-12-24 04:33:37]     ✅ Regression analysis saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/regression_plots/regression_severity_score.png
+[2025-12-24 04:33:37] ✅ severity_score evaluation completed
+[2025-12-24 04:33:37] 
+🎯 Evaluating severity_stage...
+[2025-12-24 04:33:37] 🔮 Predicting severity_stage...
+[2025-12-24 04:33:37]     Using 50 specific features
+[2025-12-24 04:33:37]     ✅ Applied scaling
+[2025-12-24 04:33:37]     ✅ Predictions generated: 1240 samples
+[2025-12-24 04:33:37] 📊 severity_stage Classification Metrics:
+[2025-12-24 04:33:37]     Accuracy:  0.6468
+[2025-12-24 04:33:37]     Precision: 0.9656
+[2025-12-24 04:33:37]     Recall:    0.6468
+[2025-12-24 04:33:37]     F1-Score:  0.7619
+[2025-12-24 04:33:37]     ✅ Confusion matrix saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 04:33:37] ✅ severity_stage evaluation completed
+[2025-12-24 04:33:37] 
+🎯 Evaluating ttf_km...
+[2025-12-24 04:33:37] 🔮 Predicting ttf_km...
+[2025-12-24 04:33:37]     Using 55 specific features
+[2025-12-24 04:33:37]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 04:33:37]     ✅ Predictions generated: 1240 samples
+[2025-12-24 04:33:37] 📊 ttf_km Regression Metrics:
+[2025-12-24 04:33:37]     MAE:   184.1625
+[2025-12-24 04:33:37]     RMSE:  724.4064
+[2025-12-24 04:33:37]     R²:    0.9832
+[2025-12-24 04:33:37]     MAPE:  0.44%
+[2025-12-24 04:33:39]     ✅ Regression analysis saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 04:33:39] ✅ ttf_km evaluation completed
+[2025-12-24 04:33:39] 💾 Saving evaluation results...
+[2025-12-24 04:33:39] ✅ Predictions saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/predictions_vs_actual.csv
+[2025-12-24 04:33:39] ✅ Metrics summary saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/metrics_summary.csv
+[2025-12-24 04:33:39] ✅ Detailed sample results saved: G:\BSCS\Semester 7\FYP\codes\ModelTraining\evaluation\batch\outputs/detailed_sample_results.csv
+[2025-12-24 04:33:39] 
+============================================================
+[2025-12-24 04:33:39] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 04:33:39] ============================================================
+[2025-12-24 05:25:28] 🚀 Starting batch evaluation...
+[2025-12-24 05:25:28] 🔍 Loading Final.csv...
+[2025-12-24 05:25:28] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 05:25:28] 🔄 Applying preprocessing...
+[2025-12-24 05:25:28] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 05:25:28] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 05:25:28] ✅ Target distributions:
+[2025-12-24 05:25:28]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 05:25:28]    Severity Score: 0.000 - 0.992
+[2025-12-24 05:25:28]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 05:25:28]    TTF (km): 5289 - 58490
+[2025-12-24 05:25:28] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 05:25:28]    Splitting anomaly_label...
+[2025-12-24 05:25:28]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 05:25:28]    Splitting severity_score...
+[2025-12-24 05:25:28]    ✅ severity_score: 1240 test samples
+[2025-12-24 05:25:28]    Splitting severity_stage...
+[2025-12-24 05:25:28]    ✅ severity_stage: 1240 test samples
+[2025-12-24 05:25:28]    Splitting ttf_km...
+[2025-12-24 05:25:28]    ✅ ttf_km: 1240 test samples
+[2025-12-24 05:25:28] 🔍 Loading trained models...
+[2025-12-24 05:25:28]   📦 Loading anomaly_label...
+[2025-12-24 05:25:28]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 05:25:28]   📦 Loading severity_score...
+[2025-12-24 05:25:29]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 05:25:29]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 05:25:29]     ✅ Features loaded: 50 features
+[2025-12-24 05:25:29]   📦 Loading severity_stage...
+[2025-12-24 05:25:29]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 05:25:29]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 05:25:29]     ✅ Features loaded: 50 features
+[2025-12-24 05:25:29]   📦 Loading ttf_km...
+[2025-12-24 05:25:29]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 05:25:29]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 05:25:29]     ✅ Features loaded: 55 features
+[2025-12-24 05:25:29] ✅ All models loaded successfully!
+[2025-12-24 05:25:29] 
+============================================================
+[2025-12-24 05:25:29] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 05:25:29] ============================================================
+[2025-12-24 05:25:29] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 05:25:29] 🔮 Predicting anomaly_label...
+[2025-12-24 05:25:29]     Using 120 specific features
+[2025-12-24 05:25:29]     ✅ Applied imputation
+[2025-12-24 05:25:29]     ✅ Applied scaling
+[2025-12-24 05:25:29]     ✅ Predictions generated: 1240 samples
+[2025-12-24 05:25:29] 📊 anomaly_label Classification Metrics:
+[2025-12-24 05:25:29]     Accuracy:  0.9992
+[2025-12-24 05:25:29]     Precision: 0.9992
+[2025-12-24 05:25:29]     Recall:    0.9992
+[2025-12-24 05:25:29]     F1-Score:  0.9992
+[2025-12-24 05:25:29]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 05:25:29] ✅ anomaly_label evaluation completed
+[2025-12-24 05:25:29] 
+🎯 Evaluating severity_score...
+[2025-12-24 05:25:29] 🔮 Predicting severity_score...
+[2025-12-24 05:25:29]     Using 50 specific features
+[2025-12-24 05:25:29]     ✅ Applied scaling
+[2025-12-24 05:25:29]     ✅ Predictions generated: 1240 samples
+[2025-12-24 05:25:29] 📊 severity_score Regression Metrics:
+[2025-12-24 05:25:29]     MAE:   0.0148
+[2025-12-24 05:25:29]     RMSE:  0.0225
+[2025-12-24 05:25:29]     R²:    0.9572
+[2025-12-24 05:25:29]     MAPE:  2.19%
+[2025-12-24 05:25:31]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score.png
+[2025-12-24 05:25:31] ✅ severity_score evaluation completed
+[2025-12-24 05:25:31] 
+🎯 Evaluating severity_stage...
+[2025-12-24 05:25:31] 🔮 Predicting severity_stage...
+[2025-12-24 05:25:31]     Using 50 specific features
+[2025-12-24 05:25:31]     ✅ Applied scaling
+[2025-12-24 05:25:31]     ✅ Predictions generated: 1240 samples
+[2025-12-24 05:25:31] 📊 severity_stage Classification Metrics:
+[2025-12-24 05:25:31]     Accuracy:  0.9863
+[2025-12-24 05:25:31]     Precision: 0.9881
+[2025-12-24 05:25:31]     Recall:    0.9863
+[2025-12-24 05:25:31]     F1-Score:  0.9869
+[2025-12-24 05:25:31]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 05:25:31] ✅ severity_stage evaluation completed
+[2025-12-24 05:25:31] 
+🎯 Evaluating ttf_km...
+[2025-12-24 05:25:31] 🔮 Predicting ttf_km...
+[2025-12-24 05:25:31]     Using 55 specific features
+[2025-12-24 05:25:32]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 05:25:32]     ✅ Predictions generated: 1240 samples
+[2025-12-24 05:25:32] 📊 ttf_km Regression Metrics:
+[2025-12-24 05:25:32]     MAE:   184.1625
+[2025-12-24 05:25:32]     RMSE:  724.4064
+[2025-12-24 05:25:32]     R²:    0.9832
+[2025-12-24 05:25:32]     MAPE:  0.44%
+[2025-12-24 05:25:33]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 05:25:33] ✅ ttf_km evaluation completed
+[2025-12-24 05:25:33] 💾 Saving evaluation results...
+[2025-12-24 05:25:33] ✅ Predictions saved: outputs/predictions_vs_actual.csv
+[2025-12-24 05:25:33] ✅ Metrics summary saved: outputs/metrics_summary.csv
+[2025-12-24 05:25:33] ✅ Detailed sample results saved: outputs/detailed_sample_results.csv
+[2025-12-24 05:25:33] 
+============================================================
+[2025-12-24 05:25:33] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 05:25:33] ============================================================
+[2025-12-24 15:09:18] 🚀 Starting batch evaluation...
+[2025-12-24 15:09:18] 🔍 Loading Final.csv...
+[2025-12-24 15:09:18] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 15:09:18] 🔄 Applying preprocessing...
+[2025-12-24 15:09:18] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 15:09:18] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 15:09:18] ✅ Target distributions:
+[2025-12-24 15:09:18]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 15:09:18]    Severity Score: 0.000 - 0.992
+[2025-12-24 15:09:18]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 15:09:18]    TTF (km): 5289 - 58490
+[2025-12-24 15:09:18] 🔄 Recreating train-test split (same as training)...
+[2025-12-24 15:09:18]    Splitting anomaly_label...
+[2025-12-24 15:09:18]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 15:09:18]    Splitting severity_score...
+[2025-12-24 15:09:18]    ✅ severity_score: 1240 test samples
+[2025-12-24 15:09:18]    Splitting severity_stage...
+[2025-12-24 15:09:18]    ✅ severity_stage: 1240 test samples
+[2025-12-24 15:09:18]    Splitting ttf_km...
+[2025-12-24 15:09:18]    ✅ ttf_km: 1240 test samples
+[2025-12-24 15:09:18] 🔍 Loading trained models...
+[2025-12-24 15:09:18]   📦 Loading anomaly_label...
+[2025-12-24 15:09:19]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 15:09:19]   📦 Loading severity_score...
+[2025-12-24 15:09:19]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 15:09:19]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 15:09:19]     ✅ Features loaded: 50 features
+[2025-12-24 15:09:19]   📦 Loading severity_stage...
+[2025-12-24 15:09:19]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 15:09:19]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 15:09:19]     ✅ Features loaded: 50 features
+[2025-12-24 15:09:19]   📦 Loading ttf_km...
+[2025-12-24 15:09:19]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 15:09:19]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 15:09:19]     ✅ Features loaded: 55 features
+[2025-12-24 15:09:19] ✅ All models loaded successfully!
+[2025-12-24 15:09:19] 
+============================================================
+[2025-12-24 15:09:19] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 15:09:19] ============================================================
+[2025-12-24 15:09:19] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 15:09:19] 🔮 Predicting anomaly_label...
+[2025-12-24 15:09:19]     Using 120 specific features
+[2025-12-24 15:09:19]     ✅ Applied imputation
+[2025-12-24 15:09:19]     ✅ Applied scaling
+[2025-12-24 15:09:19]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:09:19] 📊 anomaly_label Classification Metrics:
+[2025-12-24 15:09:19]     Accuracy:  0.9992
+[2025-12-24 15:09:19]     Precision: 0.9992
+[2025-12-24 15:09:19]     Recall:    0.9992
+[2025-12-24 15:09:19]     F1-Score:  0.9992
+[2025-12-24 15:09:19]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 15:09:19] ✅ anomaly_label evaluation completed
+[2025-12-24 15:09:19] 
+🎯 Evaluating severity_score...
+[2025-12-24 15:09:19] 🔮 Predicting severity_score...
+[2025-12-24 15:09:19]     Using 50 specific features
+[2025-12-24 15:09:19]     ✅ Applied scaling
+[2025-12-24 15:09:19]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:09:19] 📊 severity_score Regression Metrics:
+[2025-12-24 15:09:19]     MAE:   0.0148
+[2025-12-24 15:09:19]     RMSE:  0.0225
+[2025-12-24 15:09:19]     R²:    0.9572
+[2025-12-24 15:09:19]     MAPE:  2.19%
+[2025-12-24 15:09:21]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score.png
+[2025-12-24 15:09:21] ✅ severity_score evaluation completed
+[2025-12-24 15:09:21] 
+🎯 Evaluating severity_stage...
+[2025-12-24 15:09:21] 🔮 Predicting severity_stage...
+[2025-12-24 15:09:21]     Using 50 specific features
+[2025-12-24 15:09:21]     ✅ Applied scaling
+[2025-12-24 15:09:21]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:09:21] 📊 severity_stage Classification Metrics:
+[2025-12-24 15:09:21]     Accuracy:  0.9863
+[2025-12-24 15:09:21]     Precision: 0.9881
+[2025-12-24 15:09:21]     Recall:    0.9863
+[2025-12-24 15:09:21]     F1-Score:  0.9869
+[2025-12-24 15:09:21]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 15:09:21] ✅ severity_stage evaluation completed
+[2025-12-24 15:09:21] 
+🎯 Evaluating ttf_km...
+[2025-12-24 15:09:21] 🔮 Predicting ttf_km...
+[2025-12-24 15:09:21]     Using 55 specific features
+[2025-12-24 15:09:21]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 15:09:21]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:09:21] 📊 ttf_km Regression Metrics:
+[2025-12-24 15:09:21]     MAE:   184.1625
+[2025-12-24 15:09:21]     RMSE:  724.4064
+[2025-12-24 15:09:21]     R²:    0.9832
+[2025-12-24 15:09:21]     MAPE:  0.44%
+[2025-12-24 15:09:23]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 15:09:23] ✅ ttf_km evaluation completed
+[2025-12-24 15:09:23] 💾 Saving evaluation results...
+[2025-12-24 15:09:23] ✅ Predictions saved: outputs/predictions_vs_actual.csv
+[2025-12-24 15:09:23] ✅ Metrics summary saved: outputs/metrics_summary.csv
+[2025-12-24 15:09:23] ✅ Detailed sample results saved: outputs/detailed_sample_results.csv
+[2025-12-24 15:09:23] 
+============================================================
+[2025-12-24 15:09:23] 🎉 BATCH EVALUATION COMPLETED!
+[2025-12-24 15:09:23] ============================================================
+[2025-12-24 15:32:02] 🚀 Starting batch evaluation...
+[2025-12-24 15:32:02] 🔍 Loading Final.csv...
+[2025-12-24 15:32:03] ✅ Loaded dataset: 6680 rows × 128 columns
+[2025-12-24 15:32:03] 🔄 Applying preprocessing...
+[2025-12-24 15:32:03] ✅ Removed NaN targets: 6680 → 6198 rows
+[2025-12-24 15:32:03] ✅ Features after preprocessing: 120 numeric columns
+[2025-12-24 15:32:03] ✅ Target distributions:
+[2025-12-24 15:32:03]    Anomaly: {0: 5897, 1: 301}
+[2025-12-24 15:32:03]    Severity Score: 0.000 - 0.992
+[2025-12-24 15:32:03]    Severity Stage: [0, 1, 2, 4]
+[2025-12-24 15:32:03]    TTF (km): 5289 - 58490
+[2025-12-24 15:32:03] 🔄 Creating unified train-test split for all targets...
+[2025-12-24 15:32:03]    ✅ anomaly_label: 1240 test samples
+[2025-12-24 15:32:03]    ✅ severity_score: 1240 test samples
+[2025-12-24 15:32:03]    ✅ severity_stage: 1240 test samples
+[2025-12-24 15:32:03]    ✅ ttf_km: 1240 test samples
+[2025-12-24 15:32:03] 🔍 Loading trained models...
+[2025-12-24 15:32:03]   📦 Loading anomaly_label...
+[2025-12-24 15:32:03]     ✅ Anomaly bundle loaded: model + scaler + imputer + 120 features
+[2025-12-24 15:32:03]   📦 Loading severity_score...
+[2025-12-24 15:32:04]     ✅ Model loaded: severity_score_model.pkl
+[2025-12-24 15:32:04]     ✅ Scaler loaded: severity_score_scaler.pkl
+[2025-12-24 15:32:04]     ✅ Features loaded: 50 features
+[2025-12-24 15:32:04]   📦 Loading severity_stage...
+[2025-12-24 15:32:04]     ✅ Model loaded: severity_stage_model.pkl
+[2025-12-24 15:32:04]     ✅ Scaler loaded: severity_stage_scaler.pkl
+[2025-12-24 15:32:04]     ✅ Features loaded: 50 features
+[2025-12-24 15:32:04]   📦 Loading ttf_km...
+[2025-12-24 15:32:04]     ✅ Model loaded: ttf_model.pkl
+[2025-12-24 15:32:04]     ✅ Scaler loaded: ttf_scaler.pkl
+[2025-12-24 15:32:04]     ✅ Features loaded: 55 features
+[2025-12-24 15:32:04] ✅ All models loaded successfully!
+[2025-12-24 15:32:04] 
+============================================================
+[2025-12-24 15:32:04] 🔮 RUNNING PREDICTIONS ON TEST SET
+[2025-12-24 15:32:04] ============================================================
+[2025-12-24 15:32:04] 
+🎯 Evaluating anomaly_label...
+[2025-12-24 15:32:04] 🔮 Predicting anomaly_label...
+[2025-12-24 15:32:04]     Using 120 specific features
+[2025-12-24 15:32:04]     ✅ Applied imputation
+[2025-12-24 15:32:04]     ✅ Applied scaling
+[2025-12-24 15:32:04]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:32:04] 📊 anomaly_label Classification Metrics:
+[2025-12-24 15:32:04]     Accuracy:  0.9911
+[2025-12-24 15:32:04]     Precision: 0.9922
+[2025-12-24 15:32:04]     Recall:    0.9911
+[2025-12-24 15:32:04]     F1-Score:  0.9914
+[2025-12-24 15:32:05]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_anomaly_label.png
+[2025-12-24 15:32:05] ✅ anomaly_label evaluation completed
+[2025-12-24 15:32:05] 
+🎯 Evaluating severity_score...
+[2025-12-24 15:32:05] 🔮 Predicting severity_score...
+[2025-12-24 15:32:05]     Using 50 specific features
+[2025-12-24 15:32:05]     ✅ Applied scaling
+[2025-12-24 15:32:05]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:32:05] 📊 severity_score Regression Metrics:
+[2025-12-24 15:32:05]     MAE:   0.0149
+[2025-12-24 15:32:05]     RMSE:  0.0229
+[2025-12-24 15:32:05]     R²:    0.9528
+[2025-12-24 15:32:05]     MAPE:  2.70%
+[2025-12-24 15:32:07]     ✅ Regression analysis saved: outputs/regression_plots/regression_severity_score.png
+[2025-12-24 15:32:07] ✅ severity_score evaluation completed
+[2025-12-24 15:32:07] 
+🎯 Evaluating severity_stage...
+[2025-12-24 15:32:07] 🔮 Predicting severity_stage...
+[2025-12-24 15:32:07]     Using 50 specific features
+[2025-12-24 15:32:07]     ✅ Applied scaling
+[2025-12-24 15:32:07]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:32:07] 📊 severity_stage Classification Metrics:
+[2025-12-24 15:32:07]     Accuracy:  0.6468
+[2025-12-24 15:32:07]     Precision: 0.9656
+[2025-12-24 15:32:07]     Recall:    0.6468
+[2025-12-24 15:32:07]     F1-Score:  0.7619
+[2025-12-24 15:32:07]     ✅ Confusion matrix saved: outputs/confusion_matrices/confusion_severity_stage.png
+[2025-12-24 15:32:07] ✅ severity_stage evaluation completed
+[2025-12-24 15:32:07] 
+🎯 Evaluating ttf_km...
+[2025-12-24 15:32:07] 🔮 Predicting ttf_km...
+[2025-12-24 15:32:07]     Using 55 specific features
+[2025-12-24 15:32:07]     ✅ Applied scaling on all 120 features, then selected 55 for TTF model
+[2025-12-24 15:32:07]     ✅ Predictions generated: 1240 samples
+[2025-12-24 15:32:07] 📊 ttf_km Regression Metrics:
+[2025-12-24 15:32:07]     MAE:   491.3179
+[2025-12-24 15:32:07]     RMSE:  2149.8964
+[2025-12-24 15:32:07]     R²:    0.8422
+[2025-12-24 15:32:07]     MAPE:  1.79%
+[2025-12-24 15:32:09]     ✅ Regression analysis saved: outputs/regression_plots/regression_ttf_km.png
+[2025-12-24 15:32:09] ✅ ttf_km evaluation completed
+[2025-12-24 15:32:09] 💾 Saving evaluation results...
+[2025-12-24 15:32:09] ❌ CRITICAL ERROR: [Errno 13] Permission denied: 'outputs/predictions_vs_actual.csv'

@@ -67,12 +67,12 @@ python evaluate_batch.py
 
 ## 🎯 Model Performance
 
-| Model                 | Type                   | Performance     | Status     |
-| --------------------- | ---------------------- | --------------- | ---------- |
-| **Anomaly Detection** | Binary Classification  | 96.41% Accuracy | ✅ Working |
-| **Severity Score**    | Regression             | R² = 76.16%     | ✅ Working |
-| **Severity Stage**    | 5-Class Classification | 90.38% Accuracy | ✅ Working |
-| **Time-to-Failure**   | Regression             | R² = 84.22%     | ✅ Working |
+| Model                 | Type                   | Performance     | Status      |
+| --------------------- | ---------------------- | --------------- | ----------- |
+| **Anomaly Detection** | Binary Classification  | 96.41% Accuracy | ✅ Working  |
+| **Severity Score**    | Regression             | R² ≈ 95.7%      | ✅ Improved |
+| **Severity Stage**    | 5-Class Classification | 90.38% Accuracy | ✅ Working  |
+| **Time-to-Failure**   | Regression             | R² = 84.22%     | ✅ Working  |
 
 ## 📈 Recent Test Results
 
@@ -91,10 +91,20 @@ Low TTF:          Anomaly ✅ Perfect | Severity ±0.158 | Stage 4→2      | TT
 ```
 🏆 COMPREHENSIVE TEST SET EVALUATION:
 Anomaly Detection:  99.92% Accuracy | F1: 99.92% | ✅ Excellent
-Severity Score:     R²: -4.96 | MAE: 0.246 | ⚠️ Needs Review
+Severity Score:     R²: 0.96 | MAE: 0.015 | MAPE: 2.19% | ✅ Fixed
 Severity Stage:     98.63% Accuracy | F1: 98.69% | ✅ Excellent
 TTF Prediction:     R²: 98.32% | MAE: 184km | ✅ Excellent
 ```
+
+### Severity Score Training (FAST_MODE)
+
+The improved severity_score model is trained via `modules/train_severity_score.py`.
+In that script there is a `FAST_MODE` flag:
+
+- `FAST_MODE = True` → fast experiments (smaller grid, 3-fold CV)
+- `FAST_MODE = False` → full, slower hyperparameter search (recommended for final FYP runs)
+
+After training, run `evaluation/batch/evaluate_batch.py` again to refresh the batch metrics.
 
 ## 🔧 Technical Details
 

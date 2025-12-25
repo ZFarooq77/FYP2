@@ -33,8 +33,10 @@ from imblearn.over_sampling import RandomOverSampler
 # ==========================================================
 # 🔧 CONFIGURATION
 # ==========================================================
-DATA_PATH = "Final.csv"
-OUTPUT_DIR = "models/main_models"
+# Resolve paths relative to repository root so scripts work from any CWD
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(BASE_DIR, "Final.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "models", "main_models")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 TARGET = "severity_score"
@@ -48,23 +50,48 @@ DROP_COLS = [
 RANDOM_STATE = 42
 N_BINS = 5                    # Quantile bins for stratification
 TOP_K_FEATURES = 50           # Top sensor features
-CV_SPLITS = 5
 
-# Optimized hyperparameter grids (based on working reference results)
-GB_PARAM_GRID = {
-    "n_estimators": [50, 100, 150],
-    "learning_rate": [0.01, 0.05, 0.1],
-    "max_depth": [2, 3, 4],
-    "min_samples_split": [2, 5, 10],
-    "subsample": [0.8, 0.9, 1.0]
-}
+# Fast/Full training modes
+FAST_MODE = True  # Set to False for full, slower hyperparameter search
 
-RF_PARAM_GRID = {
-    "n_estimators": [100, 200, 300],
-    "max_depth": [5, 10, 15],
-    "min_samples_split": [2, 5, 10],
-    "max_features": ["sqrt", "log2", 0.5]
-}
+if FAST_MODE:
+    CV_SPLITS = 3
+
+    # Smaller, faster grids for experimentation
+    GB_PARAM_GRID = {
+        "n_estimators": [100],
+        "learning_rate": [0.05, 0.1],
+        "max_depth": [3],
+        "min_samples_split": [2, 5],
+        "subsample": [1.0],
+    }  # 1×2×1×2×1 = 4 combinations
+
+    RF_PARAM_GRID = {
+        "n_estimators": [150],
+        "max_depth": [10],
+        "min_samples_split": [2, 5],
+        "max_features": ["sqrt"],
+    }  # 1×1×2×1 = 2 combinations
+else:
+    CV_SPLITS = 5
+
+    # Optimized hyperparameter grids (based on working reference results)
+    GB_PARAM_GRID = {
+        "n_estimators": [100, 150],
+        "learning_rate": [0.05, 0.1],
+        "max_depth": [3, 4],
+        "min_samples_split": [2, 5],
+        "subsample": [0.9, 1.0],
+    }
+    # Total: 2×2×2×2×2 = 32 combinations (vs 243 original)
+
+    RF_PARAM_GRID = {
+        "n_estimators": [100, 200],
+        "max_depth": [10, 15],
+        "min_samples_split": [2, 5],
+        "max_features": ["sqrt", "log2"],
+    }
+    # Total: 2×2×2×2 = 16 combinations (vs 108 original)
 
 # ==========================================================
 # 📂 1. LOAD DATA (Non-destructive)
@@ -78,17 +105,21 @@ def load_and_prepare_data():
     df = pd.read_csv(DATA_PATH)
     print(f"✅ Loaded dataset: {df.shape}")
 
-    # Filter to anomaly samples only (severity_score > 0)
-    df_anom = df[df[TARGET] > 0].reset_index(drop=True)
-    print(f"📊 Anomaly samples: {df_anom.shape[0]} rows ({df_anom.shape[0]/df.shape[0]*100:.1f}%)")
+    # Use ALL rows (normals + anomalies) so the model learns severity_score = 0 for normal windows
+    df = df.dropna(subset=[TARGET]).reset_index(drop=True)
 
-    if df_anom.shape[0] < 50:
+    total_rows = df.shape[0]
+    anomaly_rows = (df[TARGET] > 0).sum()
+    print(f"📊 Total samples used: {total_rows} rows")
+    print(f"📊 Anomaly samples (severity_score > 0): {anomaly_rows} rows ({anomaly_rows/total_rows*100:.1f}%)")
+
+    if anomaly_rows < 50:
         raise RuntimeError("❌ Too few anomaly samples for advanced training. Need more data.")
 
     # Prepare features and target
-    available_drop_cols = [col for col in DROP_COLS if col in df_anom.columns]
-    X = df_anom.drop(columns=available_drop_cols + [TARGET], errors='ignore')
-    y = df_anom[TARGET].copy()
+    available_drop_cols = [col for col in DROP_COLS if col in df.columns]
+    X = df.drop(columns=available_drop_cols + [TARGET], errors='ignore')
+    y = df[TARGET].copy()
 
     # Keep only numeric features
     numeric_cols = X.select_dtypes(include=[np.number]).columns
@@ -98,7 +129,7 @@ def load_and_prepare_data():
     print(f"✅ Target range: {y.min():.3f} - {y.max():.3f}")
     print(f"✅ Target mean: {y.mean():.3f}")
 
-    return X, y, df_anom
+    return X, y, df
 
 # ==========================================================
 # 📊 2. BALANCED SAMPLING
@@ -106,43 +137,69 @@ def load_and_prepare_data():
 # Removed redundant prepare_features_and_target function
 
 def create_balanced_dataset(X, y):
-    """Create balanced dataset using oversampling on severity bins."""
+    """Create balanced dataset using oversampling on severity bins.
+
+    We treat normal rows (severity_score == 0) as the majority class (bin 0)
+    and create quantile-based bins only on positive severities. This ensures
+    we can balance severity levels without collapsing everything into a
+    single bin when most rows are normal.
+    """
     print("\n📊 Creating balanced severity distribution...")
-    
-    # Create quantile bins for stratification
-    y_binned = pd.qcut(y, q=N_BINS, labels=False, duplicates="drop")
-    bin_counts = pd.Series(y_binned).value_counts().sort_index()
-    
+
+    # Identify anomaly rows (positive severity)
+    is_anomaly = y > 0
+    anomaly_count = is_anomaly.sum()
+    if anomaly_count == 0:
+        print("⚠️ No anomaly samples found in target; skipping balancing.")
+        y_binned = pd.Series(0, index=y.index, dtype=int)
+        return X.copy(), y.copy(), y_binned
+
+    # Bin ONLY positive severities into (N_BINS-1) quantile bins
+    y_pos = y[is_anomaly]
+    n_anomaly_bins = max(1, N_BINS - 1)
+    # First create categorical bins on positive severities, then use their codes
+    y_pos_bins = pd.qcut(y_pos, q=n_anomaly_bins, duplicates="drop")
+    y_pos_binned = y_pos_bins.cat.codes
+
+    # Build combined bin labels: 0 = normals, 1..k = anomaly severity bins
+    y_binned = pd.Series(0, index=y.index, dtype=int)
+    y_binned.loc[is_anomaly] = y_pos_binned.values + 1
+
+    bin_counts = y_binned.value_counts().sort_index()
+
     print("Original bin distribution:")
     for bin_idx, count in bin_counts.items():
-        severity_range = pd.qcut(y, q=N_BINS, duplicates="drop").cat.categories[bin_idx]
-        print(f"   Bin {bin_idx} ({severity_range}): {count} samples")
-    
-    # Apply RandomOverSampler to balance bins
+        if bin_idx == 0:
+            print(f"   Bin 0 (severity_score == 0 / normal): {count} samples")
+        else:
+            severity_range = y_pos_bins.cat.categories[bin_idx - 1]
+            print(f"   Bin {bin_idx} ({severity_range}): {count} samples")
+
+    # Apply RandomOverSampler to balance bins (do not resample majority bin 0)
     ros = RandomOverSampler(sampling_strategy="not majority", random_state=RANDOM_STATE)
-    
+
     X_arr = X.values
     y_arr = y.values
-    bins_arr = np.array(y_binned)
-    
+    bins_arr = y_binned.values
+
     # Oversample based on bins
     X_res, bins_res = ros.fit_resample(X_arr, bins_arr)
-    
+
     # Map back original y values for resampled data
     rng = np.random.default_rng(RANDOM_STATE)
     bin_to_indices = {b: np.where(bins_arr == b)[0] for b in np.unique(bins_arr)}
-    
+
     y_res = []
     for b in bins_res:
         idx_choice = rng.choice(bin_to_indices[b])
         y_res.append(y_arr[idx_choice])
-    
+
     X_balanced = pd.DataFrame(X_res, columns=X.columns)
     y_balanced = pd.Series(y_res, name=TARGET)
-    
+
     print(f"✅ Balanced dataset: {X_balanced.shape[0]} samples")
     print(f"📈 Oversampling ratio: {X_balanced.shape[0]/X.shape[0]:.2f}x")
-    
+
     return X_balanced, y_balanced, y_binned
 
 # ==========================================================
@@ -217,38 +274,30 @@ def train_stacking_ensemble(X_selected, y_balanced, y_binned_balanced):
     print(f"✅ Best RF params: {rf_grid.best_params_}")
     print(f"📈 Best RF CV R²: {rf_grid.best_score_:.4f}")
 
-    # Create Stacking Ensemble (BEST MODEL)
-    print("\n🚀 Creating Stacking Ensemble...")
-    estimators = [
-        ("gradient_boosting", best_gbr),
-        ("random_forest", best_rf)
-    ]
+    # Select the BEST SINGLE model based on CV R² (simpler and more stable)
+    if gbr_grid.best_score_ >= rf_grid.best_score_:
+        best_model = best_gbr
+        best_name = "Gradient Boosting"
+        best_cv_scores = np.array([gbr_grid.best_score_])
+    else:
+        best_model = best_rf
+        best_name = "Random Forest"
+        best_cv_scores = np.array([rf_grid.best_score_])
 
-    # Use Ridge regression as meta-learner
-    meta_learner = Ridge(alpha=1.0)
-    stacking_regressor = StackingRegressor(
-        estimators=estimators,
-        final_estimator=meta_learner,
-        cv=5,
-        n_jobs=-1
-    )
+    print("\n🚀 Selecting best model based on CV R²...")
+    print(f"   Chosen model: {best_name}")
+    print(f"   Best CV R²: {best_cv_scores.mean():.4f}")
 
-    # Evaluate stacking with cross-validation
-    cv_scores = cross_val_score(
-        stacking_regressor, X_scaled, y_balanced, cv=5, scoring="r2", n_jobs=-1
-    )
-
-    print(f"✅ Stacking CV R²: {cv_scores.mean():.4f} ± {cv_scores.std():.4f}")
-
-    # Fit final stacking model
-    stacking_regressor.fit(X_scaled, y_balanced)
+    # Fit final model on all balanced data
+    best_model.fit(X_scaled, y_balanced)
 
     return {
-        "stacking_model": stacking_regressor,
+        "stacking_model": best_model,  # keep key name for backward compatibility
         "scaler": scaler,
         "gbr_results": gbr_grid,
         "rf_results": rf_grid,
-        "cv_scores": cv_scores
+        "cv_scores": best_cv_scores,
+        "final_model_name": best_name
     }
 
 # ==========================================================
@@ -286,7 +335,7 @@ def evaluate_final_model(results, X_original, y_original, selected_features):
 # 💾 6. SAVE MODELS AND RESULTS
 # ==========================================================
 def save_models_and_results(results, selected_features, importances, evaluation):
-    """Save all models, scalers, and results."""
+    """Save all models, scalers, feature list, and results."""
     print(f"\n💾 Saving models and results to {OUTPUT_DIR}...")
 
     # Ensure output directories exist
@@ -296,6 +345,11 @@ def save_models_and_results(results, selected_features, importances, evaluation)
     # Save models
     joblib.dump(results["stacking_model"], os.path.join(OUTPUT_DIR, "severity_score_model.pkl"))
     joblib.dump(results["scaler"], os.path.join(OUTPUT_DIR, "severity_score_scaler.pkl"))
+
+    # Save selected features for evaluation/batch and runtime inference
+    features_df = pd.DataFrame({"feature": selected_features})
+    features_path = os.path.join(OUTPUT_DIR, "selected_features_v2.csv")
+    features_df.to_csv(features_path, index=False)
 
     # Save comprehensive results summary
     summary = {
@@ -325,29 +379,41 @@ def save_models_and_results(results, selected_features, importances, evaluation)
 def evaluate_final_model(results, X_original, y_original, selected_features):
     """Evaluate final model on original (unbalanced) data."""
     print("\n📊 Evaluating on original anomaly data...")
-    
+
     # Prepare original data with selected features
     X_orig_selected = X_original[selected_features]
     X_orig_scaled = results["scaler"].transform(X_orig_selected)
-    
-    # Predict with stacking model
+
+    # Predict with best model (stored under 'stacking_model' key for compatibility)
     y_pred = results["stacking_model"].predict(X_orig_scaled)
-    
-    # Calculate metrics
+
+    # Calculate metrics on all rows
     r2 = r2_score(y_original, y_pred)
     mae = mean_absolute_error(y_original, y_pred)
     rmse = np.sqrt(mean_squared_error(y_original, y_pred))
-    mape = np.mean(np.abs((y_original - y_pred) / y_original)) * 100
-    
-    print(f"🏆 FINAL MODEL PERFORMANCE:")
+
+    # MAPE is undefined when true value is 0; compute only on non-zero severities
+    with np.errstate(divide="ignore", invalid="ignore"):
+        denom = np.where(y_original != 0, np.abs(y_original), np.nan)
+        mape_array = np.abs((y_original - y_pred) / denom) * 100
+        mape = np.nanmean(mape_array)
+
+    print(f"🏆 FINAL MODEL PERFORMANCE (all rows):")
     print(f"   R²: {r2:.4f} ({r2*100:.2f}%)")
     print(f"   MAE: {mae:.4f}")
     print(f"   RMSE: {rmse:.4f}")
-    print(f"   MAPE: {mape:.2f}%")
-    
+    if not np.isnan(mape):
+        print(f"   MAPE (non-zero severities only): {mape:.2f}%")
+    else:
+        print("   MAPE: N/A (no non-zero severities)")
+
     return {
-        "r2": r2, "mae": mae, "rmse": rmse, "mape": mape,
-        "y_pred": y_pred, "y_true": y_original
+        "r2": r2,
+        "mae": mae,
+        "rmse": rmse,
+        "mape": mape,
+        "y_pred": y_pred,
+        "y_true": y_original,
     }
 
 # Removed duplicate save_models_and_results function
@@ -477,8 +543,8 @@ import pandas as pd
 import numpy as np
 
 # 1. Load trained components
-model = joblib.load("{os.path.join(OUTPUT_DIR, 'severity_stacking_model_v2.pkl')}")
-scaler = joblib.load("{os.path.join(OUTPUT_DIR, 'severity_scaler_v2.pkl')}")
+model = joblib.load("{os.path.join(OUTPUT_DIR, 'severity_score_model.pkl')}")
+scaler = joblib.load("{os.path.join(OUTPUT_DIR, 'severity_score_scaler.pkl')}")
 selected_features = pd.read_csv("{os.path.join(OUTPUT_DIR, 'selected_features_v2.csv')}")['feature'].tolist()
 
 # 2. Prepare new data for prediction

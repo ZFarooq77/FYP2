@@ -58,7 +58,7 @@ print("=" * 80)
 print("\n📥 STEP 1: LOADING AND INSPECTING DATASET")
 print("-" * 50)
 
-df = pd.read_csv('Final.csv')
+df = pd.read_csv('../Final.csv')
 print(f"✅ Data loaded successfully — Shape: {df.shape}")
 
 # Basic info about TTF columns

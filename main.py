@@ -11,6 +11,7 @@ Features:
     ✅ Graceful error handling (continues if one module fails)
     ✅ Professional summary reporting
     ✅ Comprehensive logging
+    output saved in main_outputs/ directory simulated_runtime.csv
 """
 
 import os
@@ -88,7 +89,7 @@ def is_cached(model_path, summary_path):
     """Check if both model and summary files exist."""
     model_exists = os.path.exists(model_path)
     summary_exists = os.path.exists(summary_path)
-    
+
     if model_exists and summary_exists:
         logger.info(f"🟡 Cached files found: {os.path.basename(model_path)} + {os.path.basename(summary_path)}")
         return True
@@ -122,7 +123,7 @@ def load_cached_metrics(summary_path, model_name):
                 }
     except Exception as e:
         logger.error(f"❌ Failed to load cached metrics from {summary_path}: {str(e)}")
-    
+
     return {
         "status": "cached",
         "model_name": model_name,
@@ -136,7 +137,7 @@ def load_cached_metrics(summary_path, model_name):
 def save_unified_summary(all_results):
     """Save a unified summary CSV for all models."""
     summary_data = []
-    
+
     for result in all_results:
         row = {
             "Model_Name": result.get("model_name", "Unknown"),
@@ -145,18 +146,18 @@ def save_unified_summary(all_results):
             "Training_Time_Seconds": result.get("training_time", 0.0),
             "Timestamp": result.get("timestamp", "N/A")
         }
-        
+
         # Add metrics
         metrics = result.get("metrics", {})
         for key, value in metrics.items():
             row[f"Metric_{key}"] = value
-            
+
         # Add error if failed
         if result.get("status") == "failed":
             row["Error"] = result.get("error", "Unknown error")
-            
+
         summary_data.append(row)
-    
+
     df = pd.DataFrame(summary_data)
     df.to_csv(SUMMARY_FILE, index=False)
     logger.info(f"📊 Unified summary saved to {SUMMARY_FILE}")
@@ -168,21 +169,21 @@ def print_training_summary(all_results):
     print("="*100)
     print(f"{'Model':<35} {'Status':<12} {'Performance':<25} {'Time':<10}")
     print("-"*100)
-    
+
     success_count = 0
     total_time = 0.0
-    
+
     for result in all_results:
         model_name = result.get("model_name", "Unknown")[:34]
         status = result.get("status", "unknown")
         training_time = result.get("training_time", 0.0)
         total_time += training_time
-        
+
         if status == "success":
             success_count += 1
             status_icon = "✅ Success"
             metrics = result.get("metrics", {})
-            
+
             # Extract key performance metric
             if "accuracy" in metrics:
                 perf = f"Accuracy: {metrics['accuracy']:.2%}"
@@ -192,17 +193,17 @@ def print_training_summary(all_results):
                 perf = f"R²: {metrics['r2_score']:.4f}"
             else:
                 perf = "Metrics available"
-                
+
         elif status == "cached":
             status_icon = "🟡 Cached"
             perf = "Using existing model"
         else:
             status_icon = "❌ Failed"
             perf = result.get("error", "Unknown error")[:24]
-            
+
         time_str = f"{training_time:.1f}s"
         print(f"{model_name:<35} {status_icon:<12} {perf:<25} {time_str:<10}")
-    
+
     print("-"*100)
     print(f"🎉 PIPELINE COMPLETED: {success_count}/{len(all_results)} models successful")
     print(f"⏱️ Total execution time: {total_time:.1f} seconds")
@@ -223,42 +224,42 @@ def run_model_training(config):
     function_name = config["function_name"]
     model_path = config["model_path"]
     summary_path = config["summary_path"]
-    
+
     logger.info(f"🔹 Processing: {display_name}")
-    
+
     # Check cache first
     if is_cached(model_path, summary_path):
         logger.info(f"🟡 Using cached model for {display_name}")
         return load_cached_metrics(summary_path, display_name)
-    
+
     # Train from scratch
     logger.info(f"🔄 Training {display_name} from scratch...")
     start_time = time.time()
-    
+
     try:
         # Import module and get function
         module = __import__(module_name)
         if not hasattr(module, function_name):
             raise AttributeError(f"Module {module_name} missing function `{function_name}()`")
-        
+
         train_function = getattr(module, function_name)
-        
+
         # Execute training
         result = train_function()
-        
+
         # Add timing and timestamp
         training_time = time.time() - start_time
         result["training_time"] = training_time
         result["timestamp"] = datetime.datetime.now().isoformat()
-        
+
         logger.info(f"✅ {display_name} completed successfully in {training_time:.1f}s")
         return result
-        
+
     except Exception as e:
         training_time = time.time() - start_time
         error_msg = str(e)
         logger.error(f"❌ {display_name} failed after {training_time:.1f}s: {error_msg}")
-        
+
         return {
             "status": "failed",
             "model_name": display_name,
@@ -427,6 +428,30 @@ def run_model_inference_on_runtime_data(runtime_file: str = "Simulated_Runtime.c
         except Exception as e:
             results[name] = {"status": "error", "error": str(e)}
             print(f"❌ {name}: Prediction failed - {str(e)[:50]}...")
+
+    # Apply gating logic based on anomaly predictions
+    try:
+        if "Anomaly_Detection_Prediction" in df.columns:
+            anomaly_pred = np.array(df["Anomaly_Detection_Prediction"]).astype(int)
+
+            # Gate severity score predictions: only meaningful when anomaly = 1
+            if "Severity_Score_Prediction" in df.columns:
+                sev_score_raw = np.array(df["Severity_Score_Prediction"]).astype(float)
+                sev_score_gated = np.where(anomaly_pred == 1, sev_score_raw, 0.0)
+                df["Severity_Score_Prediction"] = sev_score_gated
+
+            # Gate severity stage predictions: force Stage 0 when anomaly = 0
+            if "Severity_Stage_Prediction" in df.columns:
+                sev_stage_raw = np.array(df["Severity_Stage_Prediction"]).astype(int)
+                sev_stage_gated = np.where(anomaly_pred == 1, sev_stage_raw, 0)
+                df["Severity_Stage_Prediction"] = sev_stage_gated
+
+            print("\n🔗 Applied gating logic: anomaly → severity_score → severity_stage")
+        else:
+            print("\n⚠️ Gating logic skipped: Anomaly_Detection_Prediction not available")
+    except Exception as e:
+        print(f"\n⚠️ Failed to apply gating logic: {e}")
+
 
     # Save predictions to new file
     output_path = "Simulated_Predictions.csv"
