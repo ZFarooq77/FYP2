@@ -25,8 +25,11 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # ========== CONFIG ==========
-MODEL_DIR = "../../models/main_models"  # folder where all .pkl files exist
-OUTPUT_DIR = "output"                   # folder for evaluation outputs
+# Resolve paths relative to repository root so this module works both
+# when run as a script and when imported (e.g. from FastAPI).
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+MODEL_DIR = os.path.join(BASE_DIR, "models", "main_models")  # folder where all .pkl files exist
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")  # folder for evaluation outputs
 
 # Our 4 target predictions
 TARGETS = {
